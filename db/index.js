@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const suggestedRestaurants = require('./data.js');
-mongoose.connect('mongodb://localhost/fetcher');
+const data = require('./data.js');
+mongoose.connect('mongodb://localhost/restaurants');
 
-let suggestedRestaurantSchema = moongoose.Schema({
+let restaurantSchema = mongoose.Schema({
   id: {type: Number, unique: true},
   name: String,
-  resturants: [{
-    id: Number,
+  suggestedRestaurants: [{
+    id: {type: Number, unqiue: true},
     name: String,
     image: String,
     stars: Number,
@@ -14,30 +14,32 @@ let suggestedRestaurantSchema = moongoose.Schema({
     type: String,
     price: Number,
     amountBooked: Number,
-    availability: [{day: Number, time: Number}]
-  }]
+    availability: [{day: Number, time: Number, minute: Number}]
+  }],
 });
 
-let Restaurant = mongoose.model('Restaurant', suggestedRestaurantSchema);
+let Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 let save = (restaurants) => {
   var restaurant;
+  var suggestedRestaurants;
 
-  restaurants.forEach(function(establishment) {
+  for (var i = 0; i < restaurants.length; i++) {
+    // suggestedRestaurants = Restaurant.create(restaurants[i].suggestedRestaurants, (err) => {
+    //   // if (err) {console.log(err);}
+    //   console.log('succesful insertion of data');
+    // })
+
     restaurant = new Restaurant ({
-      id: establishment.id,
-      name: establishment.name,
-      image: establishment.image,
-      stars: establishment.stars,
-      amountRated: establishment.amountRated,
-      type: establishment.type,
-      price: establishment.price,
-      amountBooked: establishment.amountBooked,
-      availability: establishment.availability
-      });
-
-    resturant.save(function(err) {
-      if (err) return handleError(err);
+      id: restaurants[i].id,
+      name: restaurants[i].name,
+      restaurants: restaurants[i]
     })
-  })
+
+    restaurant.save(function(err) {
+      // if (err) {console.log(err)};
+    })
+  }
 }
+
+save(data);
