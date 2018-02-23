@@ -13,10 +13,10 @@ class SuggestedRestaurant {
  };
 
 class Restaurant {
-  constructor(id, name, restaurants) {
+  constructor(id, name, suggestedRestaurants) {
     this.id = id,
     this.name = name,
-    this.suggestedRestaurants = restaurants
+    this.suggestedRestaurants = suggestedRestaurants
   }
 };
 
@@ -43,7 +43,7 @@ var createAvailability = function() {
   //times open from 11am-11pm
   for (var i = 1; i <= 30; i++) {
     for (var j = 0; j < randomizeNumber(0, 5); j++) {
-      availableTimes.push({day: i, time: randomizeNumber(11, 23), minute: minute[randomizeNumber(0, minute.length - 1)]});
+      availableTimes.push({day: i, hour: randomizeNumber(11, 23), minute: minute[randomizeNumber(0, minute.length - 1)]});
     }
   }
   
@@ -51,7 +51,7 @@ var createAvailability = function() {
 };
 
 var createSuggestedRestaurants = function() {
-  var restaurants = [];
+  var suggestedRestaurants = [];
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
   var images = ['../public/images/1.jpeg', '../public/images/2.jpeg', '../public/images/3.jpeg', '../public/images/4.jpg',
                 '../public/images/5.jpg', '../public/images/6.jpg', '../public/images/7.jpeg', '../public/images/8.jpeg',
@@ -60,10 +60,10 @@ var createSuggestedRestaurants = function() {
                 '../public/images/17.jpeg', '../public/images/18.jpeg', '../public/images/19.jpeg', '../public/images/20.jpeg']
 
   for (var i = 1; i <= 12; i++) {
-    restaurants.push(new SuggestedRestaurant(i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), randomizeNumber(0, 10000), type[randomizeNumber(0, type.length - 1)], randomizeNumber(1, 5), randomizeNumber(0, 200), createAvailability()));
+    suggestedRestaurants.push(new SuggestedRestaurant(i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), randomizeNumber(0, 10000), type[randomizeNumber(0, type.length - 1)], randomizeNumber(1, 5), randomizeNumber(0, 200), createAvailability()));
   }
 
-  return restaurants;
+  return suggestedRestaurants;
 }
 
 var createRestaurants = function() {
