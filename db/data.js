@@ -76,7 +76,5 @@ var createRestaurants = function() {
   return restaurants;
 }
 
-console.log(createRestaurants().length, 'rest')
-
 module.exports = createRestaurants();
 

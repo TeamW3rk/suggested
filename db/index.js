@@ -23,17 +23,7 @@ let suggestedRestaurantSchema = mongoose.Schema({
 let restaurantSchema = mongoose.Schema({
   id: {type: Number, unique: true},
   name: String,
-  suggestedRestaurants: [{
-    id: Number,
-    name: String,
-    image: String,
-    stars: Number,
-    amountRated: Number,
-    type: String,
-    price: Number,
-    amountBooked: Number,
-    availability: [suggestedRestaurantSchema]
-  }]
+  suggestedRestaurants: [suggestedRestaurantSchema]
 });
 
 let Restaurant = mongoose.model('Restaurant', restaurantSchema);
@@ -47,12 +37,19 @@ let save = (restaurants) => {
       name: restaurants[i].name,
       suggestedRestaurants: restaurants[i].suggestedRestaurants
     })
-
-    console.log('REST',restaurant);
     restaurant.save(function(err) {
       // if (err) {console.log(err)};
     })
   }
 }
 
+let find = (callback) => {
+  Restaurant.find({id: 10}, (err, restaurant) => {
+    console.log('bye', restaurant);
+    callback(restaurant[0].suggestedRestaurants);
+  })
+}
+
 save(data);
+
+module.exports.find = find;
