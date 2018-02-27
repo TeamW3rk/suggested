@@ -45,7 +45,7 @@ let save = (restaurants) => {
 
 let find = (callback) => {
   Restaurant.find({id: 10}, (err, restaurant) => {
-    console.log('bye', restaurant);
+    // console.log('bye', restaurant);
     callback(restaurant[0].suggestedRestaurants);
   })
 }
