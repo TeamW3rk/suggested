@@ -1,7 +1,30 @@
-#suggested-restaurant {
-  border: 1px solid red
-}
 
 body {
   font-family: 'Source Sans Pro';
 }
+
+#suggested-restaurant {
+  border: 1px solid red
+}
+
+#header {
+  padding-bottom: 20px;
+}
+
+#suggested-restaurant-image {
+  height: 108;
+  width: 190;
+  padding-bottom: 10px;
+}
+
+#suggested-restaurant {
+  border: 1px solid lightgrey;
+  width: 190;
+  display: inline-block;
+}
+
+buttons {
+  display: inline;
+}
+
+#restaurants { overflow: scroll; width: 3000px; height: 300px; }

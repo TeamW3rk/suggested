@@ -4,14 +4,13 @@ import $ from 'jquery';
 
 const SuggestedRestaurant = (props) => (
   <div id="suggested-restaurant">
-  {props.restaurant.id} 
-  {props.restaurant.name} 
-  {props.restaurant.image} 
-  {props.restaurant.stars} 
-  {props.restaurant.amountRated} 
-  {props.restaurant.type} 
-  {props.restaurant.price} 
-  {props.restaurant.amountBooked} 
+    {/* <div id="suggested-restaurant-id">{props.restaurant.id}</div> */}
+    <div><img src={props.restaurant.image} id="suggested-restaurant-image" /></div> 
+    <div id="suggested-restaurant-name">{props.restaurant.name}</div>
+    <div id="suggested-restaurant-stars">{props.restaurant.stars}</div>
+    <div id="suggested-restaurant-price">{props.restaurant.price}</div>
+    <div id="suggested-restaurant-type">{props.restaurant.type}</div>     
+    <div id="suggested-restaurant-amount-booked">{props.restaurant.amountBooked}</div>
   </div>
 )
 

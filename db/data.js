@@ -53,11 +53,11 @@ var createAvailability = function() {
 var createSuggestedRestaurants = function() {
   var suggestedRestaurants = [];
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
-  var images = ['../public/images/1.jpeg', '../public/images/2.jpeg', '../public/images/3.jpeg', '../public/images/4.jpg',
-                '../public/images/5.jpg', '../public/images/6.jpg', '../public/images/7.jpeg', '../public/images/8.jpeg',
-                '../public/images/9.jpeg', '../public/images/10.jpeg', '../public/images/11.jpeg', '../public/images/12.jpeg',
-                '../public/images/13.jpg', '../public/images/14.jpg', '../public/images/15.jpg', '../public/images/16.jpeg',
-                '../public/images/17.jpeg', '../public/images/18.jpeg', '../public/images/19.jpeg', '../public/images/20.jpeg']
+  var images = ['../images/1.jpeg', '../images/2.jpg', '../images/3.jpg', '../images/4.jpg',
+                '../images/5.jpg', '../images/6.jpg', '../images/7.jpg', '../images/8.jpg',
+                '../images/9.jpg', '../images/10.jpg', '../images/11.jpg', '../images/12.jpg',
+                '../images/13.jpg', '../images/14.jpg', '../images/15.jpg', '../images/16.jpeg',
+                '../images/17.jpeg', '../images/18.jpeg', '../images/19.jpeg', '../images/20.jpeg']
 
   for (var i = 1; i <= 12; i++) {
     suggestedRestaurants.push(new SuggestedRestaurant(i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), randomizeNumber(0, 10000), type[randomizeNumber(0, type.length - 1)], randomizeNumber(1, 5), randomizeNumber(0, 200), createAvailability()));
