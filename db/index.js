@@ -43,10 +43,10 @@ let save = (restaurants) => {
   }
 }
 
-let find = (callback) => {
-  Restaurant.find({id: 10}, (err, restaurant) => {
+let find = (id, callback) => {
+  Restaurant.find({id: id}, (err, restaurants) => {
     // console.log('bye', restaurant);
-    callback(restaurant[0].suggestedRestaurants);
+    callback(restaurants);
   })
 }
 

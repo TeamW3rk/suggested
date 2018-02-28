@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 router.get('/:id/suggestions', (req, res) => {
-  helper.find(function(restaurant) {
-    res.send(restaurant);
+  helper.find(req.params.id, function(restaurants) {
+    res.send(restaurants);
   })
 })
 
