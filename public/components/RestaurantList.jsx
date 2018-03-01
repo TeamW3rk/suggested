@@ -4,14 +4,18 @@ import $ from 'jquery';
 import SuggestedRestaurant from './SuggestedRestaurant.jsx';
 
 const RestaurantList = (props) => (
-  <div id="restaurants">
+  <div>
     <div id="header">Need to book at 7:00 PM? Other great restaurants with availability.
-    <button></button>
-    <button></button>
+      <div id="buttons">
+        <button id="left-scroll" onClick={function(){props.scroll('#left-scroll')}}></button>
+        <button id="right-scroll"onClick={function(){props.scroll('#right-scroll')}}></button>
+      </div>
     </div>
-    {props.list[0] ? props.list[0].suggestedRestaurants.map((restaurant)=> {
-      return <SuggestedRestaurant restaurant={restaurant} />
-    }) : ""}
+    <div id="restaurants">
+      {props.list[0] ? props.list[0].suggestedRestaurants.map((restaurant)=> {
+        return <SuggestedRestaurant restaurant={restaurant} />
+      }) : ""}
+    </div>
   </div>
 )
 

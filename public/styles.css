@@ -3,12 +3,36 @@ body {
   font-family: 'Source Sans Pro';
 }
 
+button {
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 2rem;
+  width: 2rem;
+  background-color: #FFF;
+}
+
+button:hover {
+  border: 2px solid #da3743;
+}
+
+#buttons {
+  float: right;
+}
+
 #suggested-restaurant {
-  border: 1px solid red
+  border: 1px solid red; 
+  margin: 10px
 }
 
 #header {
-  padding-bottom: 20px;
+  border-bottom: 1px solid #e1e1e1;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.33;
+  height: 79px;
+  width: 608px;
+  padding-bottom: 1rem;
 }
 
 #suggested-restaurant-image {
@@ -27,4 +51,12 @@ buttons {
   display: inline;
 }
 
-#restaurants { overflow: scroll; width: 3000px; height: 300px; }
+#restaurants { 
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 608px;
+  height: 328px;
+  padding-top: 1rem;
+  padding: 1px;
+}

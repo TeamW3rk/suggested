@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const helper = require('../db/index.js');
 const router = require('./routes.js');
 
 app.use(express.static('../public'));
