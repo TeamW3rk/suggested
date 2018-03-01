@@ -1,6 +1,8 @@
 
 body {
   font-family: 'Source Sans Pro';
+  display: flex;
+  justify-content: center;
 }
 
 button {
@@ -10,6 +12,7 @@ button {
   height: 2rem;
   width: 2rem;
   background-color: #FFF;
+  margin: 5px;
 }
 
 button:hover {
@@ -28,7 +31,7 @@ button:hover {
 #header {
   border-bottom: 1px solid #e1e1e1;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 1.33;
   height: 79px;
   width: 608px;
@@ -59,4 +62,22 @@ buttons {
   height: 328px;
   padding-top: 1rem;
   padding: 1px;
+}
+
+#suggested-restaurant-amount-booked {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#suggested-restaurant-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#suggested-restaurant-stars {
+  font-size: .9rem;
+}
+
+#suggested-restaurant-type {
+  font-weight: lighter;
 }
