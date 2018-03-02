@@ -1,14 +1,13 @@
 class SuggestedRestaurant {
-  constructor(id, name, image, stars, amountRated, type, price, amountBooked, availability) {
+  constructor(id, name, image, stars, type, location, price, amountBooked) {
     this.id = id,
     this.name = name,
     this.image = image,
     this.stars = stars,
-    this.amountRated = amountRated,
     this.type = type,
+    this.location = location
     this.price = price,
     this.amountBooked = amountBooked
-    this.availability = availability
   }
  };
 
@@ -35,32 +34,21 @@ var createName = function() {
   return name[0].toUpperCase() + name.slice(1);
 }
 
-var createAvailability = function() {
-  var availableTimes = [];
-  var minute = [0, 15, 30, 45];
-
-  //create times for 30 days / month
-  //times open from 11am-11pm
-  for (var i = 1; i <= 30; i++) {
-    for (var j = 0; j < randomizeNumber(0, 5); j++) {
-      availableTimes.push({day: i, hour: randomizeNumber(11, 23), minute: minute[randomizeNumber(0, minute.length - 1)]});
-    }
-  }
-  
-  return availableTimes;
-};
-
 var createSuggestedRestaurants = function() {
   var suggestedRestaurants = [];
+  var id = randomizeNumber(0, 200);
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
-  var images = ['../public/images/1.jpeg', '../public/images/2.jpeg', '../public/images/3.jpeg', '../public/images/4.jpg',
-                '../public/images/5.jpg', '../public/images/6.jpg', '../public/images/7.jpeg', '../public/images/8.jpeg',
-                '../public/images/9.jpeg', '../public/images/10.jpeg', '../public/images/11.jpeg', '../public/images/12.jpeg',
-                '../public/images/13.jpg', '../public/images/14.jpg', '../public/images/15.jpg', '../public/images/16.jpeg',
-                '../public/images/17.jpeg', '../public/images/18.jpeg', '../public/images/19.jpeg', '../public/images/20.jpeg']
+  var location = ['Downtown', 'Haight', 'Dogpatch', 'Noe Valley', 'Castro', 'Richmond District', 'Hayes Valley', 'SOMA'];
+  var locationPick = location[randomizeNumber(0, location.length - 1)]
+  var images = ['1.jpeg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', 
+                '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpeg', '17.jpeg', '18.jpeg', '19.jpeg', '20.jpeg'];
+  
+  for (var i = 0; i < images.length; i++) {
+    images[i] = '/images/' + images[i];
+  }
 
   for (var i = 1; i <= 12; i++) {
-    suggestedRestaurants.push(new SuggestedRestaurant(i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), randomizeNumber(0, 10000), type[randomizeNumber(0, type.length - 1)], randomizeNumber(1, 5), randomizeNumber(0, 200), createAvailability()));
+    suggestedRestaurants.push(new SuggestedRestaurant(id + i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], locationPick, randomizeNumber(1, 5), randomizeNumber(0, 200)));
   }
 
   return suggestedRestaurants;
@@ -75,6 +63,21 @@ var createRestaurants = function() {
 
   return restaurants;
 }
+
+// var createAvailability = function() {
+//   var availableTimes = [];
+//   var minute = [0, 15, 30, 45];
+
+//   //create times for 30 days / month
+//   //times open from 11am-11pm
+//   for (var i = 1; i <= 30; i++) {
+//     for (var j = 0; j < randomizeNumber(0, 5); j++) {
+//       availableTimes.push({day: i, hour: randomizeNumber(11, 23), minute: minute[randomizeNumber(0, minute.length - 1)]});
+//     }
+//   }
+  
+//   return availableTimes;
+// };
 
 module.exports = createRestaurants();
 

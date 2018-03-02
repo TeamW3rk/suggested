@@ -1,0 +1,129 @@
+/* @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"); */
+
+body {
+  font-family: 'Lato';
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 2rem;
+  width: 2rem;
+  background-color: #FFF;
+  margin: 5px;
+  background: url('./images/left-arrow.png');
+  background-repeat:no-repeat;
+}
+
+#left-arrow, #right-arrow {
+  height: 10px;
+  width: 10px;
+}
+
+button:hover {
+  border: 2px solid #da3743;
+}
+
+#buttons {
+  float: right;
+}
+
+#suggested-restaurant {
+  border: 1px solid red; 
+  margin: 10px
+}
+
+#header {
+  border-bottom: 1px solid #e1e1e1;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.33;
+  height: 79px;
+  width: 608px;
+  padding-bottom: 1rem;
+}
+
+#suggested-restaurant-image {
+  height: 108;
+  width: 190;
+}
+
+#suggested-restaurant {
+  border: 1px solid lightgrey;
+  width: 190;
+  display: inline-block;
+}
+
+#suggested-restaurant:hover {
+  border: 2px solid #da3743;
+}
+
+#restaurants { 
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 608px;
+  height: 328px;
+  padding-top: 1rem;
+  padding: 1px;
+}
+
+#suggested-restaurant-amount-booked {
+  font-size: .8rem;
+  font-weight: 900;
+}
+
+#suggested-restaurant-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#suggested-restaurant-stars {
+  font-size: .95rem;
+}
+
+#suggested-restaurant-type {
+  font-weight: lighter;
+}
+
+.checked {
+  color: red;
+}
+
+.unchecked {
+  color: lightgrey;
+}
+
+.dollar, .no-dollar {
+  font-size: .85rem;
+}
+
+.no-dollar {
+  color: lightgrey;
+}
+
+#suggested-restaurant-stars, #suggested-restaurant-price {
+  display: inline;
+  margin-right: 5px;
+}
+
+#stars-number {
+  margin-left: 5px;
+}
+
+#suggested-restaurant-info {
+  padding: 5px;
+}
+
+#suggested-restaurant-location, #suggested-restaurant-type {
+  display: inline;
+}
+
+#booked-image {
+  height: 11px;
+  width: 11px;
+  margin-right: 3px;
+}
