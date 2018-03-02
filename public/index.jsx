@@ -15,14 +15,10 @@ class App extends React.Component {
     this.fetch();
   }
 
-  randomizeId(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   fetch() {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:3000/r/' + this.randomizeId(1, 200).toString() + '/suggestions',
+      url: 'http://localhost:3000' + window.location.pathname + 'suggestions',
       success: (data) => {
         console.log('SUCCESS! ', data);
         this.setState({restaurants: data})
@@ -47,13 +43,17 @@ class App extends React.Component {
         $("#restaurants").animate({scrollLeft: rightPosition + 400}, 100);
       })
     }
-    
+  }
+
+  getRestaurantId(id) {
+    console.log(id);
   }
 
   render() {
     return (
     <div>
-      <RestaurantList list={this.state.restaurants} scroll={this.scroll.bind(this)}/>
+      <RestaurantList list={this.state.restaurants} scroll={this.scroll.bind(this)} 
+                      getId={this.getRestaurantId.bind(this)} />
     </div>
     )
 

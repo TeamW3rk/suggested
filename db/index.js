@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const data = require('./data.js');
 mongoose.connect('mongodb://localhost/restaurants');
 
-let availabilitySchema = mongoose.Schema({
-  day: Number,
-  hour: Number,
-  minute: Number
-})
+// let availabilitySchema = mongoose.Schema({
+//   day: Number,
+//   hour: Number,
+//   minute: Number
+// })
 
 let suggestedRestaurantSchema = mongoose.Schema({
   id: {type: Number, unqiue: true},
@@ -17,7 +17,6 @@ let suggestedRestaurantSchema = mongoose.Schema({
   type: String,
   price: Number,
   amountBooked: Number,
-  availability: [availabilitySchema]
 })
 
 let restaurantSchema = mongoose.Schema({
@@ -45,9 +44,8 @@ let save = (restaurants) => {
 
 let find = (id, callback) => {
   Restaurant.find({id: id}, (err, restaurants) => {
-    // console.log('bye', restaurant);
     callback(restaurants);
-  })
+  }).sort({id: -1})
 }
 
 save(data);

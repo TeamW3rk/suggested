@@ -2,16 +2,54 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-const SuggestedRestaurant = (props) => (
-  <div id="suggested-restaurant">
+const SuggestedRestaurant = (props) => {
+  let checked = [];
+  for (var i = 0; i < props.restaurant.stars; i++) {
+    checked.push('checked');
+  }
+
+  let unchecked = [];
+  for (var i = 0; i < 5 - checked.length; i++) {
+    unchecked.push('');
+  }
+
+  let dollar = [];
+  for (var i = 0; i < props.restaurant.price; i++) {
+    dollar.push('');
+  }
+
+  let noDollar = [];
+  for (var i = 0; i < 5 - dollar.length; i++) {
+    noDollar.push('');
+  }
+
+  return (
+  <div id="suggested-restaurant" onClick={function(){props.getId(props.restaurant.id)}}>
     <div><img src={props.restaurant.image} id="suggested-restaurant-image" /></div> 
     <div id="suggested-restaurant-name">{props.restaurant.name}</div>
-    <div id="suggested-restaurant-stars">{props.restaurant.stars} stars</div>
-    <div id="suggested-restaurant-price">Price: {props.restaurant.price}</div>
+    <div id="suggested-restaurant-stars">
+      {checked.map((star) => {
+        return <span className="fa fa-star checked"></span>
+      })}
+      {unchecked.map((noStar) => {
+        return <span className="fa fa-star unchecked"></span>
+      })}
+      {props.restaurant.stars}
+    </div>
+    <div id="suggested-restaurant-price">
+      {dollar.map((dollar) => {
+        return <span className="dollar">&#36;</span>
+      })}
+      {noDollar.map((noDollar) => {
+        return <span className="no-dollar">&#36;</span>
+      })}
+    </div>
     <div id="suggested-restaurant-type">{props.restaurant.type}</div>     
     <div id="suggested-restaurant-amount-booked">Booked {props.restaurant.amountBooked} times today</div>
-  </div>
-)
+  </div> 
+  )
+}
+
 
 export default SuggestedRestaurant;
 

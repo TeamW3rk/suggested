@@ -1,3 +1,4 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
 
 body {
   font-family: 'Source Sans Pro';
@@ -50,6 +51,10 @@ button:hover {
   display: inline-block;
 }
 
+#suggested-restaurant:hover {
+  border: 2px solid #da3743;
+}
+
 buttons {
   display: inline;
 }
@@ -80,4 +85,16 @@ buttons {
 
 #suggested-restaurant-type {
   font-weight: lighter;
+}
+
+.checked {
+  color: red;
+}
+
+.unchecked {
+  color: lightgrey;
+}
+
+.no-dollar {
+  color: lightgrey;
 }
