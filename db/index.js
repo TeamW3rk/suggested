@@ -13,8 +13,8 @@ let suggestedRestaurantSchema = mongoose.Schema({
   name: String,
   image: String,
   stars: Number,
-  amountRated: Number,
   type: String,
+  location: String,
   price: Number,
   amountBooked: Number,
 })
