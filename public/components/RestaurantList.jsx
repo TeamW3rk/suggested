@@ -10,13 +10,12 @@ const RestaurantList = (props) => (
         <button id="left-scroll" onClick={function(){props.scroll('#left-scroll')}}>
           <img src="./images/left-arrow.png" id="left-arrow" />
         </button>
-        <button id="right-scroll"onClick={function(){props.scroll('#right-scroll')}}>
+        <button id="right-scroll" onClick={function(){props.scroll('#right-scroll')}}>
           <img src="./images/right-arrow.png" id="right-arrow" />
         </button>
       </div>
     </div>
     <div id="restaurants">
-      {console.log(props.list[0])}
       {props.list[0] ? props.list[0].suggestedRestaurants.map((restaurant)=> {
         return <SuggestedRestaurant restaurant={restaurant} getId={props.getId} />
       }) : ""}
