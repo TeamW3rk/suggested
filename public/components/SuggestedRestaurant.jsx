@@ -3,25 +3,11 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 const SuggestedRestaurant = (props) => {
-  let checked = [];
-  for (var i = 0; i < props.restaurant.stars; i++) {
-    checked.push('checked');
-  }
+  let stars = ['no-stars', 'no-stars', 'no-stars', 'no-stars', 'no-stars'];
+  stars.fill('starred', 0, props.restaurant.stars); 
 
-  let unchecked = [];
-  for (var i = 0; i < 5 - checked.length; i++) {
-    unchecked.push('');
-  }
-
-  let dollar = [];
-  for (var i = 0; i < props.restaurant.price; i++) {
-    dollar.push('');
-  }
-
-  let noDollar = [];
-  for (var i = 0; i < 5 - dollar.length; i++) {
-    noDollar.push('');
-  }
+  let dollar = ['no-dollar', 'no-dollar', 'no-dollar', 'no-dollar', 'no-dollar'];
+  dollar.fill('dollar', 0, props.restaurant.price);
 
   return (
   <div id="suggested-restaurant" onClick={function(){props.getId(props.restaurant.id)}}>
@@ -29,20 +15,22 @@ const SuggestedRestaurant = (props) => {
     <div id="suggested-restaurant-info">
       <div id="suggested-restaurant-name">{props.restaurant.name}</div>
       <div id="suggested-restaurant-stars">
-        {checked.map((star) => {
-          return <span className="fa fa-star checked"></span>
-        })}
-        {unchecked.map((noStar) => {
-          return <span className="fa fa-star unchecked"></span>
+        {stars.map((starred) => {
+          if (starred === 'starred') {
+            return <span className="fa fa-star checked"></span>
+          } else {
+            return <span className="fa fa-star unchecked"></span>
+          }
         })}
         <span id="stars-number"> {props.restaurant.stars} </span>
       </div>
       <div id="suggested-restaurant-price">
         {dollar.map((dollar) => {
-          return <span className="dollar">&#36;</span>
-        })}
-        {noDollar.map((noDollar) => {
-          return <span className="no-dollar">&#36;</span>
+          if (dollar === 'dollar') {
+            return <span className="dollar">&#36;</span>
+          } else  {
+            return <span className="no-dollar">&#36;</span>
+          }
         })}
       </div>
       <div id="type-location">
@@ -57,7 +45,6 @@ const SuggestedRestaurant = (props) => {
   </div> 
   )
 }
-
 
 export default SuggestedRestaurant;
 

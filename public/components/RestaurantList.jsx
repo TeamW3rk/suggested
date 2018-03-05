@@ -16,6 +16,7 @@ const RestaurantList = (props) => (
       </div>
     </div>
     <div id="restaurants">
+      {console.log(props.list[0])}
       {props.list[0] ? props.list[0].suggestedRestaurants.map((restaurant)=> {
         return <SuggestedRestaurant restaurant={restaurant} getId={props.getId} />
       }) : ""}
