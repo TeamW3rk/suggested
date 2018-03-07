@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantList component renders RestaurantList component 1`] = `
+<div>
+  <div
+    id="header"
+  >
+    Need to book at 7:00 PM? Other great restaurants with availability.
+    <div
+      id="buttons"
+    >
+      <button
+        id="left-scroll"
+        onClick={[Function]}
+      >
+        <img
+          id="left-arrow"
+          src="./images/left-arrow.png"
+        />
+      </button>
+      <button
+        id="right-scroll"
+        onClick={[Function]}
+      >
+        <img
+          id="right-arrow"
+          src="./images/right-arrow.png"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    id="restaurants"
+  />
+</div>
+`;
+
+exports[`SuggestedRestaurant component renders SuggestedRestaurant component 1`] = `
+<div
+  id="suggested-restaurant"
+  onClick={[Function]}
+>
+  <div>
+    <img
+      id="suggested-restaurant-image"
+    />
+  </div>
+  <div
+    id="suggested-restaurant-info"
+  >
+    <div
+      id="suggested-restaurant-name"
+    />
+    <div
+      id="suggested-restaurant-stars"
+    >
+      <span
+        className="fa fa-star checked"
+      />
+      <span
+        className="fa fa-star checked"
+      />
+      <span
+        className="fa fa-star checked"
+      />
+      <span
+        className="fa fa-star checked"
+      />
+      <span
+        className="fa fa-star checked"
+      />
+      <span
+        id="stars-number"
+      >
+         
+         
+      </span>
+    </div>
+    <div
+      id="suggested-restaurant-price"
+    >
+      <span
+        className="dollar"
+      >
+        $
+      </span>
+      <span
+        className="dollar"
+      >
+        $
+      </span>
+      <span
+        className="dollar"
+      >
+        $
+      </span>
+      <span
+        className="dollar"
+      >
+        $
+      </span>
+      <span
+        className="dollar"
+      >
+        $
+      </span>
+    </div>
+    <div
+      id="type-location"
+    >
+      <div
+        id="suggested-restaurant-type"
+      >
+         
+        <span
+          id="middot"
+        >
+          ·
+        </span>
+         
+      </div>
+      <div
+        id="suggested-restaurant-location"
+      />
+    </div>
+    <div
+      id="suggested-restaurant-amount-booked"
+    >
+      <img
+        id="booked-image"
+        src="./images/booked.png"
+      />
+      Booked 
+       times today
+    </div>
+  </div>
+</div>
+`;

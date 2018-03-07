@@ -9,7 +9,20 @@
   "scripts": {
     "test": "jest",
     "dev": "webpack -d --watch",
-    "build": "webpack -p --watch"
+    "build": "webpack -p --watch",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "dependencies": {
     "babel-loader": "^7.1.2",
@@ -29,9 +42,14 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "file-loader": "^1.1.10",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.2",
+    "react-test-renderer": "^16.2.0",
     "regenerator-runtime": "^0.11.1",
     "url-loader": "^0.6.2"
   },

@@ -10,7 +10,7 @@ const RestaurantList = (props) => (
         <button id="left-scroll" onClick={function(){props.scroll('#left-scroll')}}>
           <img src="./images/left-arrow.png" id="left-arrow" />
         </button>
-        <button id="right-scroll"onClick={function(){props.scroll('#right-scroll')}}>
+        <button id="right-scroll" onClick={function(){props.scroll('#right-scroll')}}>
           <img src="./images/right-arrow.png" id="right-arrow" />
         </button>
       </div>
