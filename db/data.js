@@ -36,7 +36,6 @@ var createName = function() {
 
 var createSuggestedRestaurants = function() {
   var suggestedRestaurants = [];
-  var id = randomizeNumber(0, 200);
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
   var location = ['Downtown', 'Haight', 'Dogpatch', 'Noe Valley', 'Castro', 'Richmond District', 'Hayes Valley', 'SOMA'];
   var locationPick = location[randomizeNumber(0, location.length - 1)]
@@ -48,7 +47,7 @@ var createSuggestedRestaurants = function() {
   }
 
   for (var i = 1; i <= 12; i++) {
-    suggestedRestaurants.push(new SuggestedRestaurant(id + i, createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], locationPick, randomizeNumber(1, 5), randomizeNumber(0, 200)));
+    suggestedRestaurants.push(new SuggestedRestaurant(randomizeNumber(0, 200), createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], locationPick, randomizeNumber(1, 5), randomizeNumber(0, 200)));
   }
 
   return suggestedRestaurants;

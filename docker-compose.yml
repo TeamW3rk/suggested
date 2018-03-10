@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  suggested:
+    build: .
+    depends_on:
+      - 'database'
+    ports: 
+      - '3001:3001'
+
+  database:
+    image: mongo:3.6.2

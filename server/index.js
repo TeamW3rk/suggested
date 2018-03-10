@@ -1,8 +1,10 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const router = require('./routes.js');
 
-app.use(express.static('../public'));
+app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static('../public'));
 app.use('/r', router);
 
 let port = 3001;

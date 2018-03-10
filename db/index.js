@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
 const data = require('./data.js');
-mongoose.connect('mongodb://localhost/restaurants');
-
-// let availabilitySchema = mongoose.Schema({
-//   day: Number,
-//   hour: Number,
-//   minute: Number
-// })
+mongoose.connect('mongodb://database/restaurants');
 
 let suggestedRestaurantSchema = mongoose.Schema({
-  id: {type: Number, unqiue: true},
+  id: Number,
   name: String,
   image: String,
   stars: Number,
@@ -28,17 +22,15 @@ let restaurantSchema = mongoose.Schema({
 let Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 let save = (restaurants) => {
-  var restaurant;
+  // var restaurant;
 
   for (var i = 0; i < restaurants.length; i++) {
-    restaurant = new Restaurant ({
+    let restaurant = new Restaurant ({
       id: restaurants[i].id,
       name: restaurants[i].name,
       suggestedRestaurants: restaurants[i].suggestedRestaurants
     })
-    restaurant.save(function(err) {
-      // if (err) {console.log(err)};
-    })
+    restaurant.save().then(res => mongoose.disconnect());
   }
 }
 
@@ -48,6 +40,10 @@ let find = (id, callback) => {
   }).sort({id: -1})
 }
 
-save(data);
+// mongoose.disconnect();
 
+// save(data);
+
+module.exports.Restaurant = Restaurant;
 module.exports.find = find;
+module.exports.save = save;
