@@ -13,7 +13,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "drop": "node db/drop.js",
-    "start": "node db/seed.js && nodemon server/index.js",
+    "start": "nodemon server/index.js",
     "seed": "node db/seed.js"
   },
   "jest": {
@@ -34,6 +34,7 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-alpha.6",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
     "mongoose": "^5.0.6",
     "nodemon": "^1.17.1",
     "random-puppy": "^1.1.0",
