@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const data = require('./data.js');
-mongoose.connect('mongodb://database/restaurants');
+mongoose.connect('mongodb://localhost/restaurants');
 
 let suggestedRestaurantSchema = mongoose.Schema({
   id: Number,
