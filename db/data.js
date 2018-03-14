@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 class SuggestedRestaurant {
   constructor(id, name, image, stars, type, location, price, amountBooked) {
     this.id = id,
@@ -24,21 +26,16 @@ var randomizeNumber = function(min, max) {
 }
 
 var createName = function() {
-  var name = '';
-  var nameLength = randomizeNumber(4, 12); 
-
-  for (var i = 0; i < nameLength; i++) {
-    name += String.fromCharCode(randomizeNumber(97, 122));
-  }
-
-  return name[0].toUpperCase() + name.slice(1);
+  var first = faker.lorem.word();
+  var name = faker.lorem.word();
+  return first[0].toUpperCase() + first.slice(1) + ' ' + name[0].toUpperCase() + name.slice(1);
 }
 
 var createSuggestedRestaurants = function() {
   var suggestedRestaurants = [];
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
   var location = ['Downtown', 'Haight', 'Dogpatch', 'Noe Valley', 'Castro', 'Richmond District', 'Hayes Valley', 'SOMA'];
-  var locationPick = location[randomizeNumber(0, location.length - 1)]
+  //var locationPick = location[randomizeNumber(0, location.length - 1)];
   var images = ['1.jpeg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', 
                 '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpeg', '17.jpeg', '18.jpeg', '19.jpeg', '20.jpeg'];
   
@@ -47,7 +44,7 @@ var createSuggestedRestaurants = function() {
   }
 
   for (var i = 1; i <= 12; i++) {
-    suggestedRestaurants.push(new SuggestedRestaurant(randomizeNumber(0, 200), createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], locationPick, randomizeNumber(1, 5), randomizeNumber(0, 200)));
+    suggestedRestaurants.push(new SuggestedRestaurant(randomizeNumber(0, 200), createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], faker.address.city().slice(0, 11), randomizeNumber(1, 5), randomizeNumber(0, 200)));
   }
 
   return suggestedRestaurants;
