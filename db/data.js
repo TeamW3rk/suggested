@@ -8,7 +8,6 @@ const url = 'mongodb://localhost:27017';
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
-
 class SuggestedRestaurant {
   constructor(id, name, image, stars, type, location, price, amountBooked) {
     this.id = id,
