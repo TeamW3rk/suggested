@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const data = require('./data.js');
 mongoose.connect('mongodb://localhost/restaurants');
 
 let suggestedRestaurantSchema = mongoose.Schema({
@@ -22,16 +21,15 @@ let restaurantSchema = mongoose.Schema({
 let Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 let save = (restaurants) => {
-  // var restaurant;
-
+  const promises = [];
   for (var i = 0; i < restaurants.length; i++) {
-    let restaurant = new Restaurant ({
-      id: restaurants[i].id,
-      name: restaurants[i].name,
-      suggestedRestaurants: restaurants[i].suggestedRestaurants
-    })
-    restaurant.save().then(res => mongoose.disconnect());
+    let restaurant = new Restaurant(restaurants[i]);
+    promises.push(restaurant.save());
   }
+  Promise.all(promises).then(() => {
+    console.log('all saved!');
+    mongoose.disconnect();
+  });
 }
 
 let find = (id, callback) => {
@@ -39,10 +37,6 @@ let find = (id, callback) => {
     callback(restaurants);
   }).sort({id: -1})
 }
-
-// mongoose.disconnect();
-
-// save(data);
 
 module.exports.Restaurant = Restaurant;
 module.exports.find = find;

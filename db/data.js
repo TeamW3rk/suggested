@@ -1,4 +1,13 @@
+const mongoose = require('mongoose');
 const faker = require('faker');
+const { save, Restaurant } = require('./index.js');
+
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';
+
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+
 
 class SuggestedRestaurant {
   constructor(id, name, image, stars, type, location, price, amountBooked) {
@@ -13,7 +22,7 @@ class SuggestedRestaurant {
   }
  };
 
-class Restaurant {
+class Rez {
   constructor(id, name, suggestedRestaurants) {
     this.id = id,
     this.name = name,
@@ -50,30 +59,41 @@ var createSuggestedRestaurants = function() {
   return suggestedRestaurants;
 }
 
-var createRestaurants = function() {
+var createRestaurants = async function() {
+  const client = await MongoClient.connect(url);
+  const db = client.db('restaurants');
+  const collection = db.collection('restaurants');
+  const id = cluster.worker.id - 1;
   var restaurants = []; 
-
-  for (var i = 1; i <= 200; i++) {
-    restaurants.push(new Restaurant(i, createName(), createSuggestedRestaurants()));
-  }
-
-  return restaurants;
+  var start = new Date();
+  console.log(start);
+  for (var i = id * (10000000/numCPUs) + 1; i <= (id + 1) * (10000000/numCPUs); i++) {
+    restaurants.push(new Rez(i, createName(), createSuggestedRestaurants()));
+    if (i % 1000 === 0) {
+      await collection.insertMany(restaurants);
+      restaurants = [];
+    }
+    if (i % 1000000 === 0) {
+      console.log((new Date() - start) / 60000, i);
+    }
+  } 
+  console.log((new Date() - start) / 60000);
+  process.exit();
 }
 
-// var createAvailability = function() {
-//   var availableTimes = [];
-//   var minute = [0, 15, 30, 45];
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-//   //create times for 30 days / month
-//   //times open from 11am-11pm
-//   for (var i = 1; i <= 30; i++) {
-//     for (var j = 0; j < randomizeNumber(0, 5); j++) {
-//       availableTimes.push({day: i, hour: randomizeNumber(11, 23), minute: minute[randomizeNumber(0, minute.length - 1)]});
-//     }
-//   }
-  
-//   return availableTimes;
-// };
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
 
-module.exports = createRestaurants();
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} finished`);
+  });
+} else {
+  createRestaurants();
+  console.log(`Worker ${process.pid} started`);
+}
+
 
