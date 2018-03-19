@@ -48,7 +48,7 @@ const createSuggestions = () => {
   }
 
   return {
-    id: num,
+    restid: num,
     name: createName(),
     image: images[randomizeNumber(0, images.length - 1)],
     stars: randomizeNumber(1, 5),
@@ -61,7 +61,7 @@ const createSuggestions = () => {
  }
 
  const cs = new pgp.helpers.ColumnSet(
-  ['id', 'name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked', 'suggestedrestaurants'],
+  ['restid', 'name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked', 'suggestedrestaurants'],
   {table: 'restaurants'},
   ); 
 
@@ -81,7 +81,7 @@ const createSuggestions = () => {
    console.log('START', new Date());
    await db.none(
       `CREATE TABLE restaurants(
-        id INT,
+        restid INT,
         name TEXT,
         image TEXT,
         stars INT,
