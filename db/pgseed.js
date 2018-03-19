@@ -73,11 +73,11 @@ const createSuggestions = () => {
  }
 
  const insertData = async (data, cs) => {
-  await db.none(pgp.helpers.insert(data, cs))
-    .then(console.log('10k in'));
+  await db.none(pgp.helpers.insert(data, cs));
  };
 
  const createTable = async () => {
+   console.log('START', new Date());
    await db.none(
       `CREATE TABLE restaurants(
         id SERIAL PRIMARY KEY,
@@ -94,6 +94,8 @@ const createSuggestions = () => {
       for (let i = 0; i < 1000; i++) {
         await insertData(makeRez(), cs);
       }
+   }).then(() => {
+     console.log('END', new Date());
    })
  }
 
