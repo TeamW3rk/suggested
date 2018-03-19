@@ -48,6 +48,7 @@ const createSuggestions = () => {
   }
 
   return {
+    id: num,
     name: createName(),
     image: images[randomizeNumber(0, images.length - 1)],
     stars: randomizeNumber(1, 5),
@@ -60,27 +61,27 @@ const createSuggestions = () => {
  }
 
  const cs = new pgp.helpers.ColumnSet(
-  ['name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked', 'suggestedrestaurants'],
+  ['id', 'name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked', 'suggestedrestaurants'],
   {table: 'restaurants'},
   ); 
 
- const makeRez = () => {
-   const results = [];
-   for (let i = 0; i < 10000; i++) {
+ const makeRez = async () => {
+   console.log('i ran');
+   let results = [];
+   for (let i = 1; i <= 10000000; i++) {
      results.push(makeRestaurant(i));
+     if (i % 10000 === 0) {
+       await db.none(pgp.helpers.insert(results, cs));
+       results = [];
+     }
    }
-   return results;
  }
-
- const insertData = async (data, cs) => {
-  await db.none(pgp.helpers.insert(data, cs));
- };
 
  const createTable = async () => {
    console.log('START', new Date());
    await db.none(
       `CREATE TABLE restaurants(
-        id SERIAL PRIMARY KEY,
+        id INT,
         name TEXT,
         image TEXT,
         stars INT,
@@ -91,9 +92,7 @@ const createSuggestions = () => {
         suggestedrestaurants INT []
       );`
    ).then(async () => {
-      for (let i = 0; i < 1000; i++) {
-        await insertData(makeRez(), cs);
-      }
+     await makeRez();
    }).then(() => {
      console.log('END', new Date());
    })
