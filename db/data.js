@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const faker = require('faker');
-const { save, Restaurant } = require('./index.js');
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
@@ -23,7 +22,7 @@ class SuggestedRestaurant {
 
 class Rez {
   constructor(id, name, suggestedRestaurants) {
-    this.id = id,
+    this.restid = id,
     this.name = name,
     this.suggestedRestaurants = suggestedRestaurants
   }
@@ -51,7 +50,7 @@ var createSuggestedRestaurants = function() {
     images[i] = '/images/' + images[i];
   }
 
-  for (var i = 1; i <= 12; i++) {
+  for (var i = 1; i <= 6; i++) {
     suggestedRestaurants.push(new SuggestedRestaurant(randomizeNumber(0, 200), createName(), images[randomizeNumber(0, images.length -1)], randomizeNumber(1, 5), type[randomizeNumber(0, type.length - 1)], faker.address.city().slice(0, 11), randomizeNumber(1, 5), randomizeNumber(0, 200)));
   }
 
@@ -73,7 +72,7 @@ var createRestaurants = async function() {
       restaurants = [];
     }
     if (i % 1000000 === 0) {
-      console.log((new Date() - start) / 60000, i);
+      console.log('Million in', (new Date() - start) / 60000, i);
     }
   } 
   console.log((new Date() - start) / 60000);
@@ -83,11 +82,22 @@ var createRestaurants = async function() {
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
 
+  let finishedWorkers = 0;
+
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
 
-  cluster.on('exit', (worker, code, signal) => {
+  cluster.on('exit', async (worker, code, signal) => {
+    finishedWorkers++;
+    if (finishedWorkers === numCPUs) {
+      const client = await MongoClient.connect(url);
+      const db = client.db('restaurants');
+      const collection = db.collection('restaurants');
+      console.log('indexing begins');
+      await collection.createIndex({restid: 1});
+      process.exit();
+    }
     console.log(`worker ${worker.process.pid} finished`);
   });
 } else {

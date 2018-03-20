@@ -13,7 +13,7 @@ let suggestedRestaurantSchema = mongoose.Schema({
 })
 
 let restaurantSchema = mongoose.Schema({
-  id: {type: Number, unique: true},
+  restid: Number,
   name: String,
   suggestedRestaurants: [suggestedRestaurantSchema]
 });
@@ -33,9 +33,9 @@ let save = (restaurants) => {
 }
 
 let find = (id, callback) => {
-  Restaurant.find({id: id}, (err, restaurants) => {
+  Restaurant.find({restid: id}, (err, restaurants) => {
     callback(restaurants);
-  }).sort({id: -1})
+  }).sort({restid: -1})
 }
 
 module.exports.Restaurant = Restaurant;
