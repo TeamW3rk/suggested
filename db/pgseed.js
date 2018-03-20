@@ -77,9 +77,9 @@ const createSuggestions = () => {
    }
  }
 
- const createTable = async () => {
+ const createTable = () => {
    console.log('START', new Date());
-   await db.none(
+    db.none(
       `CREATE TABLE restaurants(
         restid INT,
         name TEXT,
@@ -92,9 +92,13 @@ const createSuggestions = () => {
         suggestedrestaurants INT []
       );`
    ).then(async () => {
-     await makeRez();
+      makeRez();
    }).then(() => {
      console.log('END', new Date());
+   }).then(() => {
+     db.none(
+       `CREATE INDEX indy ON RESTAURANTS (restid);`
+     )
    })
  }
 
