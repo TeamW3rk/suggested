@@ -8,17 +8,6 @@ const db = pgp(cn);
 const faker = require('faker');
 const numRests = 10000000;
 
-
-db.connect()
-  .then(function(obj) {
-    console.log('im in');
-    obj.done();
-  })
-  .catch(function(error) {
-    console.log('ERROR:', error.message);
-  })
-
-
 var randomizeNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -66,7 +55,6 @@ const createSuggestions = () => {
   ); 
 
  const makeRez = async () => {
-   console.log('i ran');
    let results = [];
    for (let i = 1; i <= 10000000; i++) {
      results.push(makeRestaurant(i));
@@ -77,9 +65,9 @@ const createSuggestions = () => {
    }
  }
 
- const createTable = () => {
+ const createTable = async () => {
    console.log('START', new Date());
-    db.none(
+    await db.none(
       `CREATE TABLE restaurants(
         restid INT,
         name TEXT,
@@ -90,16 +78,12 @@ const createSuggestions = () => {
         price INT,
         amountbooked TEXT,
         suggestedrestaurants INT []
-      );`
-   ).then(async () => {
-      makeRez();
-   }).then(() => {
-     console.log('END', new Date());
-   }).then(() => {
-     db.none(
-       `CREATE INDEX indy ON RESTAURANTS (restid);`
-     )
-   })
+      );`);
+    await makeRez();
+    await db.none(
+      `CREATE INDEX indy ON RESTAURANTS (restid);`
+    );
+    console.log('END', new Date());
  }
 
  createTable();
