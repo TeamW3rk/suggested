@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:3001'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+  defaults:
+    headers:
+      x-my-service-auth: 
+scenarios:
+  - flow:
+    - loop:
+      - get:
+         url: '/r/654/suggestions'
+        count: 10
+      
