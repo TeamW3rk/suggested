@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require('path');
 const helper = require('../db/index.js');
 
-router.use("/:id", express.static(path.join(__dirname, '../public')));
+// router.use("/:id", express.static(path.join(__dirname, '../public')));
 // router.use('/:id', express.static('../public'));
 
 router.get('/:id/suggestions', (req, res) => {
