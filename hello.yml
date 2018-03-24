@@ -1,15 +1,15 @@
 config:
+  http:
+    pool: 8
   target: 'http://localhost:3001'
   phases:
-    - duration: 60
-      arrivalRate: 20
+    - duration: 6
+      arrivalRate: 1000
   defaults:
     headers:
       x-my-service-auth: 
 scenarios:
   - flow:
-    - loop:
-      - get:
-         url: '/r/654/suggestions'
-        count: 50
+    - get:
+        url: '/r/345/suggestions'
       

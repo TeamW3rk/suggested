@@ -6,8 +6,10 @@ const pgp = require('pg-promise')(options);
 const cn = 'postgres://localhost:5432/suggested';
 const db = pgp(cn);
 
-const search = (id, column = '*') => {
-  return db.any(`SELECT ${column} FROM restaurants WHERE restid = $1`, id).then(data => data[0]);
+const search = (id) => {
+  return db.any(`SELECT
+    * FROM suggestions JOIN restaurants ON (suggestions.suggested = restaurants.restid)
+    WHERE suggestions.restid = ${id};`);
 }
 
 module.exports.search = search;

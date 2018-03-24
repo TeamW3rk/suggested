@@ -18,14 +18,6 @@ var createName = function() {
   return first[0].toUpperCase() + first.slice(1) + ' ' + name[0].toUpperCase() + name.slice(1);
 }
 
-const createSuggestions = () => {
-  const results = [];
-  for (let i = 0; i < 6; i++) {
-    results.push(randomizeNumber(1, numRests));
-  }
-  return results;
-}
-
  const makeRestaurant = (num) => {
   var type = ['American', 'Thai', 'Asian', 'Japanese', 'Italian', 'Mexican', 'Indian', 'Russian', 'Hawaiian'];
 
@@ -44,13 +36,12 @@ const createSuggestions = () => {
     type: type[randomizeNumber(0, type.length - 1)],
     location: faker.address.city().slice(0, 11),
     price: randomizeNumber(1, 5),
-    amountbooked: randomizeNumber(0, 200),
-    suggestedrestaurants: createSuggestions()
+    amountbooked: randomizeNumber(0, 200)
   }
  }
 
  const cs = new pgp.helpers.ColumnSet(
-  ['restid', 'name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked', 'suggestedrestaurants'],
+  ['restid', 'name', 'image', 'stars', 'type', 'location', 'price', 'amountbooked'],
   {table: 'restaurants'},
   ); 
 
@@ -76,8 +67,7 @@ const createSuggestions = () => {
         type TEXT,
         location TEXT,
         price INT,
-        amountbooked TEXT,
-        suggestedrestaurants INT []
+        amountbooked TEXT
       );`);
     await makeRez();
     await db.none(
