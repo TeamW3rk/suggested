@@ -3,7 +3,7 @@ config:
     pool: 8
   target: 'http://localhost:3001'
   phases:
-    - duration: 6
+    - duration: 60
       arrivalRate: 1000
   defaults:
     headers:
@@ -11,5 +11,5 @@ config:
 scenarios:
   - flow:
     - get:
-        url: '/r/345/suggestions'
+        url: '/r/456'
       

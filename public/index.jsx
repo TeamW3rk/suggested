@@ -25,7 +25,7 @@ class Suggestions extends React.Component {
       url: `${PATH}${path}suggestions`,
       // url: 'http://localhost:3001' + window.location.pathname + 'suggestions',
       success: (data) => {
-        console.log('SUCCESS! ', data.suggestedRestaurants);
+        console.log('SUCCESS!', data);
         this.setState({restaurants: data})
       },
       error: (err) => {
