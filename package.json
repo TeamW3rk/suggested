@@ -14,7 +14,8 @@
     "test:coverage": "jest --coverage",
     "drop": "node db/drop.js",
     "start": "nodemon server/index.js",
-    "seed": "node db/pgseed.js"
+    "seed": "node db/pgseed.js",
+    "serve": "node server/index.js"
   },
   "jest": {
     "setupFiles": [
