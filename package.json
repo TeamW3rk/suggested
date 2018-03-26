@@ -14,7 +14,7 @@
     "test:coverage": "jest --coverage",
     "drop": "node db/drop.js",
     "start": "nodemon server/index.js",
-    "seed": "node db/data.js"
+    "seed": "node db/pgseed.js"
   },
   "jest": {
     "setupFiles": [
@@ -49,7 +49,6 @@
     "react-dom": "^16.2.0",
     "react-star-ratings": "^2.2.0",
     "redis": "^2.8.0",
-    "sequelize": "^4.37.1",
     "webpack": "^3.11.0"
   },
   "devDependencies": {

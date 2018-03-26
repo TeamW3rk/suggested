@@ -31,7 +31,6 @@ const saveJoin = async () => {
 }
 
 const createJoin = async () => {
-  console.log('START', new Date());
    await db.none(
      `CREATE TABLE suggestions(
        restid INT,
@@ -44,7 +43,6 @@ const createJoin = async () => {
    await db.none(
     `CREATE INDEX sugg1 ON SUGGESTIONS (suggested);`
   );
-   console.log('END', new Date());
 }
 
-createJoin();
+module.exports = createJoin;

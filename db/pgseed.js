@@ -1,4 +1,5 @@
 const promise = require('bluebird');
+const createJoin = require('./jointable.js');
 const options = {
   promiseLib: promise
 };
@@ -73,6 +74,7 @@ var createName = function() {
     await db.none(
       `CREATE INDEX indy ON RESTAURANTS (restid);`
     );
+    await createJoin();
     console.log('END', new Date());
  }
 
