@@ -4,10 +4,10 @@ import $ from 'jquery';
 import RestaurantList from './components/RestaurantList.jsx';
 import CONFIG from '../config.client.js';
 
-const ENV = window.ENV = 'TEST'; // Define current enironment
-const PATH = window.PATH = CONFIG[ENV].HOST + ":" + CONFIG[ENV].PORT;
+const ENV = 'TEST'; // Define current enironment
+const PATH = CONFIG[ENV].HOST + ":" + CONFIG[ENV].PORT;
 
-class Suggestions extends React.Component {
+export default class Suggestions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,16 +16,15 @@ class Suggestions extends React.Component {
   }
 
   componentWillMount() {
-    this.fetch(window.location.pathname);
+    this.fetch(this.props.id);
   }
 
-  fetch(path) {
+  fetch(id) {
     $.ajax({
       method: 'GET',
-      url: `${PATH}${path}suggestions`,
-      // url: 'http://localhost:3001' + window.location.pathname + 'suggestions',
+      url: `${PATH}/r/${id}/suggestions`,
       success: (data) => {
-        console.log('SUCCESS! ', data);
+        console.log('SUCCESS!', data);
         this.setState({restaurants: data})
       },
       error: (err) => {
@@ -64,6 +63,5 @@ class Suggestions extends React.Component {
   }
 }
 
-ReactDOM.render(<Suggestions />, document.getElementById('app'));
 
 
