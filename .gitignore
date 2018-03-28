@@ -1,3 +1,5 @@
 node_modules
 bundle.js
 nrkey.js
+dump.rdb
+newrelic_agent.log
