@@ -4,9 +4,13 @@ services:
   suggested:
     build: .
     depends_on:
-      - 'database'
+      - 'postgres'
+      - 'redis'
     ports: 
       - '3001:3001'
 
-  database:
-    image: mongo:3.6.2
+  postgres:
+    image: postgres:latest
+
+  redis:
+    image: redis:latest

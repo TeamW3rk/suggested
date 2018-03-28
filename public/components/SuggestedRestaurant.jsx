@@ -10,7 +10,7 @@ const SuggestedRestaurant = (props) => {
   dollar.fill('dollar', 0, props.restaurant.price);
 
   return (
-  <div id="suggested-restaurant" onClick={function(){props.getId(props.restaurant.id)}}>
+  <div id="suggested-restaurant" onClick={function(){props.getId(props.restaurant.restid)}}>
     <div><img src={props.restaurant.image} id="suggested-restaurant-image" /></div> 
     <div id="suggested-restaurant-info">
       <div id="suggested-restaurant-name">{props.restaurant.name}</div>
@@ -39,7 +39,7 @@ const SuggestedRestaurant = (props) => {
       </div>       
       <div id="suggested-restaurant-amount-booked">
         <img src={"./images/booked.png"} id="booked-image" />
-        Booked {props.restaurant.amountBooked} times today
+        Booked {props.restaurant.amountbooked} times today
       </div>
     </div>
   </div> 

@@ -16,7 +16,7 @@ const RestaurantList = (props) => (
       </div>
     </div>
     <div id="restaurants">
-      {props.list[0] ? props.list[0].suggestedRestaurants.map((restaurant)=> {
+      {props.list.length ? props.list.map((restaurant)=> {
         return <SuggestedRestaurant restaurant={restaurant} getId={props.getId} />
       }) : ""}
     </div>
