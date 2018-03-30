@@ -7,16 +7,16 @@ import CONFIG from '../config.client.js';
 const ENV = 'TEST'; // Define current enironment
 const PATH = CONFIG[ENV].HOST + ":" + CONFIG[ENV].PORT;
 
-export default class Suggestions extends React.Component {
+class Suggestions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: []
+      restaurants: this.props.restaurants
     }
   }
 
-  componentWillMount() {
-    this.fetch(this.props.id);
+  componentDidMount() {
+    //this.fetch(this.props.id);
   }
 
   fetch(id) {
@@ -63,5 +63,5 @@ export default class Suggestions extends React.Component {
   }
 }
 
-
+export default Suggestions;
 

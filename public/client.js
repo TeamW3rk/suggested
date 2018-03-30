@@ -2,6 +2,7 @@ import Suggestions from './index.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-let id = window.location.pathname.split('/')[2];
+const element = document.getElementById('suggested');
+const initState = JSON.parse(element.getAttribute('data-suggested'))
 
-ReactDOM.render(<Suggestions id={id} />, document.getElementById('app'));
+ReactDOM.hydrate(<Suggestions {...initState}/>, element);
