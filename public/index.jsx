@@ -11,12 +11,13 @@ class Suggestions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: this.props.restaurants
+      restaurants: this.props.restaurants || [],
     }
   }
 
   componentDidMount() {
-    //this.fetch(this.props.id);
+    let id = window.location.pathname.split('/')[2];
+    this.fetch(id);
   }
 
   fetch(id) {

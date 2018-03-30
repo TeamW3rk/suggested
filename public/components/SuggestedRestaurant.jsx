@@ -11,7 +11,7 @@ const SuggestedRestaurant = (props) => {
 
   return (
   <div id="suggested-restaurant" onClick={function(){props.getId(props.restaurant.restid)}}>
-    <div><img src={props.restaurant.image} id="suggested-restaurant-image" /></div> 
+    <div><img src={`http://localhost:3001${props.restaurant.image}`} id="suggested-restaurant-image" /></div> 
     <div id="suggested-restaurant-info">
       <div id="suggested-restaurant-name">{props.restaurant.name}</div>
       <div id="suggested-restaurant-stars">
@@ -38,7 +38,7 @@ const SuggestedRestaurant = (props) => {
         <div id="suggested-restaurant-location">{props.restaurant.location}</div>   
       </div>       
       <div id="suggested-restaurant-amount-booked">
-        <img src={"./images/booked.png"} id="booked-image" />
+        <img src={"http://localhost:3001/images/booked.png"} id="booked-image" />
         Booked {props.restaurant.amountbooked} times today
       </div>
     </div>
